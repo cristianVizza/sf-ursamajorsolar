@@ -1,0 +1,36 @@
+<!--
+  @description       : 
+  @author            : Cristian Vizzarri
+  @group             : 
+  @last modified on  : 12-17-2023
+  @last modified by  : Cristian Vizzarri
+  Modifications Log
+  Ver   Date         Author              Modification
+  1.0   12-16-2023   Cristian Vizzarri   Initial Version
+-->
+<apex:page sidebar="false" showheader="false" lightningStylesheets="true">
+<apex:includeLightning />
+<div id="lightning"> </div>
+<script type="text/javascript">
+
+    console.log('ExampleVF Langing Page');
+    console.log("{!$CurrentPage.parameters.Object}");
+    console.log("{!$CurrentPage.parameters.recordId}");
+    console.log('FIN ExampleVF Langing Page');
+
+    $Lightning.use(
+        "c:ExampleLWCApp",
+        function() {
+            $Lightning.createComponent(
+            "c:ExampleLWC",
+            {recordId : "{!$CurrentPage.parameters.recordId}", firedFrom : "{!$CurrentPage.parameters.Object}"},
+            "lightning",
+            function(cmp) {
+                    console.log('AppWebApp VF Page includer initialized - funcion inside VF');
+                    }
+            );
+        }
+    );
+
+</script>
+</apex:page>

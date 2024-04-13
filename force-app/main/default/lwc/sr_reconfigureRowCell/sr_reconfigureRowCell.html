@@ -1,0 +1,32 @@
+<!--
+  @description       : 
+  @author            : Cristian Vizzarri
+  @group             : 
+  @last modified on  : 12-13-2023
+  @last modified by  : Cristian Vizzarri 
+  Modifications Log
+  Ver   Date         Author              Modification
+  1.0   12-13-2023   Cristian Vizzarri   Initial Version
+-->
+<template>
+    <template lwc:if={fieldDataType}>
+        <template lwc:if={isDateField}>
+            <lightning-input
+                type="Date"
+                value={fieldValue}
+                disabled="true"
+                read-only="true"
+                variant="label-hidden">
+            </lightning-input>
+        </template>
+        <template lwc:elseif={isTextField}>
+            <lightning-input
+                type="text"
+                value={fieldValue}
+                disabled="true"
+                read-only="true"
+                variant="label-hidden">
+            </lightning-input>
+        </template>
+    </template>
+</template>

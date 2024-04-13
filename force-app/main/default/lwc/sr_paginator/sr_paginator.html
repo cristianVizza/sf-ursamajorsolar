@@ -1,0 +1,100 @@
+<!--
+  @description       : 
+  @author            : Cristian Vizzarri
+  @group             : 
+  @last modified on  : 12-13-2023
+  @last modified by  : Cristian Vizzarri 
+  Modifications Log
+  Ver   Date         Author              Modification
+  1.0   12-13-2023   Cristian Vizzarri   Initial Version
+-->
+<template>
+
+
+    <!-- GO TO FIRST BUTTON -->
+    <span style="display:inline-block;">
+        <template if:true={hasFirst}>
+            <lightning-button
+                onclick={first}
+                label="First">
+            </lightning-button>
+        </template>
+        <template if:false={hasFirst}>
+            <lightning-button
+                label="First"
+                disabled>
+            </lightning-button>
+        </template>
+    </span>
+
+    <!-- PREVIOUS BUTTON -->
+    <span style="display:inline-block;" class="slds-p-right_small">
+        <template if:true={hasPrev}>
+            <lightning-button
+                onclick={previous}
+                label="Prev">
+            </lightning-button>
+        </template>
+        <template if:false={hasPrev}>
+            <lightning-button
+                label="Prev"
+                disabled>
+            </lightning-button>
+        </template>
+    </span>
+
+    <!-- GOTO PAGE SELECTION -->
+    <span style="display:inline-block;" >
+        <span style="display:inline-block;" class="slds-p-right_xx-small">Page </span>
+        <span style="display:inline-block;">
+            <lightning-combobox
+                name="currentPage"
+                value={currentPageNumber}
+                options={pageOptions}
+                onchange={handleChange}
+                variant="label-hidden">
+            </lightning-combobox>
+        </span>
+        <span style="display:inline-block;" class="slds-p-left_xx-small">
+            of {totalPages}
+        </span>
+    </span>
+
+    <!-- NEXT BUTTON -->
+    <span style="display:inline-block;" class="slds-p-left_small">
+        <template if:true={hasNext}>
+            <lightning-button
+                onclick={next}
+                label="Next">
+            </lightning-button>
+        </template>
+        <template if:false={hasNext}>
+            <lightning-button
+                label="Next"
+                disabled>
+            </lightning-button>
+        </template>
+    </span>
+
+    <!-- GOI TO END BUTTON -->
+    <span style="display:inline-block;">
+        <template if:true={hasLast}>
+            <lightning-button
+                onclick={last}
+                label="Last">
+            </lightning-button>
+        </template>
+        <template if:false={hasLast}>
+            <lightning-button
+                label="Last"
+                disabled>
+            </lightning-button>
+        </template>
+    </span>
+
+    <!-- CUSTOM BUTTON SLOT -->
+    <span style="display:inline-block;" class="slds-p-left_medium">
+        <slot name="controls"></slot>
+    </span>
+
+</template>

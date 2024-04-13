@@ -1,0 +1,26 @@
+<!--
+  @description       : 
+  @author            : Cristian Vizzarri
+  @group             : 
+  @last modified on  : 03-26-2024
+  @last modified by  : Cristian Vizzarri
+  Modifications Log
+  Ver   Date         Author              Modification
+  1.0   03-26-2024   Cristian Vizzarri   Initial Version
+-->
+<template>
+    <lightning-tree-grid data={data}
+                         columns={columns}
+                         key-field="id"
+                         onclick={handleRowAction}
+                         >
+    </lightning-tree-grid>
+
+    <template if:true={editingRow}>
+        <form onsubmit={handleSubmit}>
+            <lightning-input type="text" name="name" value={editingRow.name}></lightning-input>
+            <button type="submit">Save</button>
+        </form>
+    </template>
+    sada
+</template>

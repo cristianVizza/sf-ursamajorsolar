@@ -1,0 +1,23 @@
+<!--
+  @description       : 
+  @author            : Cristian Vizzarri
+  @group             : 
+  @last modified on  : 12-17-2023
+  @last modified by  : Cristian Vizzarri
+  Modifications Log
+  Ver   Date         Author              Modification
+  1.0   12-16-2023   Cristian Vizzarri   Initial Version
+-->
+<template>
+    <lightning-card title="Lightning Web Component">
+    <div class="slds-p-horizontal_small">
+    <p> The Component is call via Visualforce page. </p>
+    </div>
+    </lightning-card>
+    <template if:true={isQuote}>
+      FIRE FROM QUOTE
+    </template>
+    <template if:true={isOrder}>
+      FIRE FROM Order
+    </template>
+</template>

@@ -1,0 +1,57 @@
+<!--
+  @description       : 
+  @author            : Cristian Vizzarri
+  @group             : 
+  @last modified on  : 12-16-2023
+  @last modified by  : Cristian Vizzarri
+  Modifications Log
+  Ver   Date         Author              Modification
+  1.0   12-16-2023   Cristian Vizzarri   Initial Version
+-->
+<apex:page sidebar="false" showheader="false" lightningStylesheets="true">
+    <head>
+      <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>VisualForce Langing Page</title>
+    </head>
+    <body class="slds-scope">
+        <apex:includeLightning />
+        <div id="componentId" />
+
+        <div id="LoadingvfDIV" class="slds-spinner_container">
+            <div class="slds-spinner slds-spinner--large" aria-hidden="false" role="alert">
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+        
+        <div class="slds-m-around--xx-small">
+            <div id="lightningvfDIV" style="min-height: 100vh !important;display:none;"/>
+        </div>
+
+        <script type="text/javascript">
+
+            console.log('VisualForce Langing Page');
+            console.log("{!$CurrentPage.parameters.Object}");
+            console.log("{!$CurrentPage.parameters.recordId}");
+            console.log('FIN VisualForce Langing Page');
+            $Lightning.use("c:AuraAppLanding", function() {
+                $Lightning.createComponent("c:editableDatatable",{
+                    recordId : "{!$CurrentPage.parameters.recordId}",
+                    firedFrom : "{!$CurrentPage.parameters.Object}"
+                },
+                "lightningvfDIV",function(cmp) {
+                    var loadingDivElt = document.getElementById("LoadingvfDIV");
+                    loadingDivElt.style.display = 'none';
+                    var ltngDivElt = document.getElementById("lightningvfDIV");
+                    ltngDivElt.style.display = 'block';
+                    console.log('AppWebApp VF Page includer initialized');
+                    });
+            });    
+        </script>
+    </body>
+    <div class="slds-has-divider--top slds-m-vertical--large slds-grid--pull-padded-medium">
+    </div> 
+
+</apex:page>
