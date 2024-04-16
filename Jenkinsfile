@@ -32,7 +32,7 @@ node {
 		println 'isUnix authentication'
                 rc = sh returnStatus: true, script: "${toolbelt} auth:jwt:grant --client-id ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwt-key-file ${jwt_key_file} --setdefaultdevhubusername --instance-url ${SFDC_HOST}"
             }else{
-		    println 'othat case authetication'
+		    println 'Other case authetication'
 		    //bat "${toolbelt} plugins:install salesforcedx@49.5.0"
 		    bat "${toolbelt} update"
 		    //bat "${toolbelt} auth:logout -u ${HUB_ORG} -p" 
@@ -53,13 +53,15 @@ node {
 		
 	     // need to pull out assigned username
 	     if (isUnix()) {
+		     	println 'isUnix deploy'
 			//rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 			//rmsg = sh returnStdout: true, script: "${toolbelt} force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
 			rmsg = sh returnStdout: true, script: "${toolbelt} project deploy start -x manifest/package.xml -u ${HUB_ORG}"
 	     }else{
-			rmsg = bat returnStdout: true, script: "${toolbelt} project deploy start -x manifest/package.xml -u ${HUB_ORG}"
-			//rmsg = bat returnStdout: true, script: "${toolbelt} force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
-		   //rmsg = bat returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
+		     	println 'else deploy'
+			//rmsg = bat returnStdout: true, script: "${toolbelt} project deploy start -x manifest/package.xml -u ${HUB_ORG}"
+			rmsg = bat returnStdout: true, script: "${toolbelt} force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
+		        //rmsg = bat returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 	    }
 			  
             printf rmsg
