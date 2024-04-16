@@ -10,14 +10,14 @@ node {
     def SFDC_HOST = env.SFDC_HOST_DH
     def JWT_KEY_CRED_ID = env.JWT_CRED_ID_DH
     def CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
-    def SFDX_LOG_LEVEL = env.SFDX_LOG_LEVEL
+    def SF_LOG_LEVEL = env.SF_LOG_LEVEL_DH
 
     println 'KEY IS' 
     println JWT_KEY_CRED_ID
     println HUB_ORG
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
-    println SFDX_LOG_LEVEL
+    println SF_LOG_LEVEL_DH
 	
     def toolbelt = tool 'toolbelt'
 
@@ -34,7 +34,7 @@ node {
 		    //bat "${toolbelt} plugins:install salesforcedx@49.5.0"
 		    bat "${toolbelt} update"
 		    //bat "${toolbelt} auth:logout -u ${HUB_ORG} -p" 
-                 rc = bat returnStatus: true, script: "${toolbelt} auth:jwt:grant --client-id ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwt-key-file ${jwt_key_file} --loglevel ${SFDX_LOG_LEVEL} --set-default-dev-hub --instance-url ${SFDC_HOST}"
+                 rc = bat returnStatus: true, script: "${toolbelt} auth:jwt:grant --client-id ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwt-key-file ${jwt_key_file} --loglevel DEBUG --set-default-dev-hub --instance-url ${SFDC_HOST}"
             }
 		
             if (rc != 0) { 
