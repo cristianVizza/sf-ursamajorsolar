@@ -59,8 +59,8 @@ node {
 			//rmsg = sh returnStdout: true, script: "${toolbelt} project deploy start -x manifest/package.xml -u ${HUB_ORG}"
 	     }else{
 		     	println 'else deploy'
-			rmsg = bat returnStdout: true, script: "${toolbelt} project deploy start --target-org ursamajor -x manifest/package.xml -u ${HUB_ORG}"
-			//rmsg = bat returnStdout: true, script: "${toolbelt} force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
+			//rmsg = bat returnStdout: true, script: "${toolbelt} project deploy start --target-org ursamajor -x manifest/package.xml -u ${HUB_ORG}"
+			rmsg = bat returnStdout: true, script: "${toolbelt} force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
 		        //rmsg = bat returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 	    }
 			  
