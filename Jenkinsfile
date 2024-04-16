@@ -30,7 +30,7 @@ node {
         stage('Deploye Code') {
             if (isUnix()) {
 		println 'isUnix authentication'
-                rc = sh returnStatus: true, script: "${toolbelt} auth:jwt:grant --client-id ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwt-key-file ${jwt_key_file} --setdefaultdevhubusername --instance-url ${SFDC_HOST}"
+                rc = sh returnStatus: true, script: "${toolbelt} auth:jwt:grant --client-id ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwt-key-file ${jwt_key_file} --set-default-dev-hub --instance-url ${SFDC_HOST}"
             }else{
 		    println 'Other case authetication'
 		    //bat "${toolbelt} plugins:install salesforcedx@49.5.0"
@@ -38,7 +38,7 @@ node {
 		    //bat "${toolbelt} auth:logout -u ${HUB_ORG} -p" 
 		    //rc = bat returnStatus: true, script: "${toolbelt} auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --loglevel DEBUG --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
 		    //--setdefaultdevhubusername    --set-default-dev-hub
-                 rc = bat returnStatus: true, script: "${toolbelt} auth:jwt:grant --client-id ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwt-key-file ${jwt_key_file} --loglevel DEBUG --setdefaultdevhubusername --instance-url ${SFDC_HOST}"
+                 rc = bat returnStatus: true, script: "${toolbelt} auth:jwt:grant --client-id ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwt-key-file ${jwt_key_file} --loglevel DEBUG --set-default-dev-hub --instance-url ${SFDC_HOST}"
             }
 		
             if (rc != 0) { 
