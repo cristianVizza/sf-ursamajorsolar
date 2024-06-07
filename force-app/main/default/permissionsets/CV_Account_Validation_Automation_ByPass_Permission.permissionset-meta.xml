@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>CV_Account_Automation_Validation_ByPass</name>
+    </customPermissions>
+    <description>Permission to bypass all validation automation</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>CV Account Validation Automation ByPass Permission</label>
+</PermissionSet>

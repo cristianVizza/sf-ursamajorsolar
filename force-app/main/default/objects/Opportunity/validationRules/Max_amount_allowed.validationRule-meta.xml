@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Max_amount_allowed</fullName>
+    <active>true</active>
+    <errorConditionFormula>$Setup.Validation_Handler__c.Run_Validation_Rules__c &amp;&amp;
+Amount &lt; 500</errorConditionFormula>
+    <errorMessage>cant edit with amount  &lt; 500</errorMessage>
+</ValidationRule>

@@ -5,6 +5,11 @@
     <confirmationTokenRequired>false</confirmationTokenRequired>
     <label>VisualForceLandingPage</label>
     <packageVersions>
+        <majorNumber>248</majorNumber>
+        <minorNumber>0</minorNumber>
+        <namespace>FSL</namespace>
+    </packageVersions>
+    <packageVersions>
         <majorNumber>240</majorNumber>
         <minorNumber>5</minorNumber>
         <namespace>SBQQ</namespace>

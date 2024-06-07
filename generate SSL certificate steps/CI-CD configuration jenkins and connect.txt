@@ -1,0 +1,95 @@
+IMPORTANT !!!!!  ==>> Example assumes that you’re working in a: PACKAGE DEVELOPMENT MODEL
+*************************************************************
+*************************************************************
+1) Install Jenkins
+*************************************************************
+*************************************************************
+
+OpenSSL download link:
+https://gnuwin32.sourceforge.net/packages/openssl.htm
+
+Continuous Integration Using Jenkins - Configure Your Environment for Jenkins
+
+https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ci_jenkins_config_env.htm
+
+Generate Self signed certificate : a certificated is required for connect jenkis and salesforce, in this case
+is just a example case so we will use a "self signed certificate", in a real world you should request this certificate
+to a thrust authority certification. 
+
+** 1.1) SET OPENSSL_CONF :
+set OPENSSL_CONF=C:\openssl\share\openssl.cnf
+
+** 1.2) Generate RSA Private Key
+openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
+
+** 1.3) Create a key file from the server.pass.key file
+openssl rsa -passin pass:x -in server.pass.key -out server.key
+
+** 1.4) Request and generate the certificate
+openssl req -new -key server.key -out server.csr
+
+** 1.5) Generate the SSL certificate
+openssl x509 -req -sha256 -days 365 -in server.csr -signkey server.key -out server.crt
+
+
+*************************************************************
+*************************************************************
+2) Setup "Connected App" on Salesforce
+*************************************************************
+*************************************************************
+
+"Connected app" is a framework that enable an external application to integrate with Salesforce using APIs and standard
+protocols, such as Security Assertion Markup Language (SAML), OAuth, and OpenID Connected.
+
+** Setup with digital signature
+** callback URL: https://localhost:1717/OAuthRedirect
+** Configure the Server.key in the crerential 
+
+Test/Validate connected app:
+sfdx force:auth:jwt:grant --client-id {ADD_YOUR_CLIENT_ID} --jwt-key-file {PATH TO YOUR SERVER.KEY} --username {Your SF user name}  --instance-url https://login.salesforce.com --set-default-dev-hub
+
+ADD_YOUR_CLIENT_ID ==> Customer Key
+
+
+Example: sfdx force:auth:jwt:grant --client-id 3MVG9Rr0EZ2YOVMZVlxgeRj.Rcf2OIL59gdVZp_CYjJjZ8tKJI6pOyJHwyVhUVOyo1nB7yReeruzQe.3yRjXH --jwt-key-file ..\..\openssl\bin\server.key --username cristiaan3003@gmail.com.cpq  --instance-url https://login.salesforce.com --set-default-dev-hub
+
+*************************************************************
+*************************************************************
+3) Configure JenKin Enviroment Variable
+*************************************************************
+*************************************************************
+
+** 3.1) in Jenkins Configure Server.key in the credential plugin: Manage Jenkins -> Credentials -> Upload "Server.key" file
+
+
+** 3.2) Set Environment variable
+
+HUB_ORG_DH : The username for the Dev Hub org
+SFDC_HOST_DH: The login URL of the Salesforce instance
+CONNECTED_APP_CUNSUMER_KEY_DH: The consumer key from connected app
+JWT_CRED_ID_DH: The credentials ID for the private key file that you stored in the Jenkins Admin Credentials interface.
+
+
+*************************************************************
+*************************************************************
+4) Configure Jenkins for GitHub Branch
+*************************************************************
+*************************************************************
+Cambiar el Alias de una ORG: sf org login web --set-default-dev-hub --alias my-hub-org
+
+** Example Jenkinsfile ** :
+https://github.com/salesforcecodeschool/Devops/blob/master/Jenkinsfile
+
+***************************************************
+**********************************************
+********************************************
+1. Click 'Search' on LinkedIn.
+2. Find the company you interviewed at.
+3. Press the 'people' button and filter it down.
+4. Filter by 'location', and 'what they do' specifically.
+5. Now, look for people who left the company recently.
+6. To do so, click "all filters" and select 'past employees.'
+
+Send them this message:
+
+"Hi, I noticed you previously worked for company X. I'm considering signing an offer there. Would you be willing to share your previous experience there with me?"

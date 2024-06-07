@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assistant_should_be_not_null</fullName>
+    <active>true</active>
+    <description>check is assistant is completed</description>
+    <errorConditionFormula>!$CustomMetadata.CV_Automation_Bypass_control__mdt.Global_Bypass.isActive__c &amp;&amp;
+ !$CustomMetadata.CV_Automation_Bypass_control__mdt.Contact.isActive__c  &amp;&amp;
+
+  ISBLANK(AssistantName)</errorConditionFormula>
+    <errorMessage>Assistant should be completed</errorMessage>
+</ValidationRule>

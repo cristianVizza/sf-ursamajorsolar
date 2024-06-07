@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CV_Validate_SIC_Code_Not_Null</fullName>
+    <active>true</active>
+    <description>validate if website is not null.</description>
+    <errorConditionFormula>ISBLANK(Website) &amp;&amp;  !$Permission.CV_Global_Automation_Validation_ByPass</errorConditionFormula>
+    <errorDisplayField>Website</errorDisplayField>
+    <errorMessage>Web Site should be not null. Please complete Web Site field.</errorMessage>
+</ValidationRule>
